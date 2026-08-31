@@ -1,0 +1,65 @@
+HUELLAS & ESTILO · CARRITO FUNCIONAL
+====================================
+
+NO CAMBIÉ EL CSS DE TU PÁGINA.
+style.css es exactamente el mismo que enviaste.
+
+QUÉ CAMBIÓ
+----------
+- carrito.html ya no tiene un producto fijo.
+- Los productos salen desde localStorage.
+- El botón + aumenta cantidad.
+- El botón - disminuye cantidad.
+- 🗑 elimina el producto.
+- El total se actualiza automáticamente.
+- Se conserva el costo de envío de $3.00 que ya usaba tu JS.
+- "Realizar Compra" sigue llevando a registro.html, como tu página original.
+
+CLAVE QUE USA EL CARRITO
+------------------------
+huellasEstiloCarrito
+
+Todos los productos de todas tus páginas deben usar esa misma clave.
+
+CÓMO CONECTAR UN PRODUCTO
+-------------------------
+Tu CSS ya tiene la clase .add-cart-btn.
+
+En una tarjeta de producto usa, por ejemplo:
+
+<button
+    class="add-cart-btn primary-btn"
+    data-id="abrigo-lana-1"
+    data-nombre="Abrigo de Lana Italiana"
+    data-precio="45.00">
+    Agregar
+</button>
+
+Luego carga carrito-global.js en esa página:
+
+<script src="carrito-global.js"></script>
+
+Si la página está dentro de otra carpeta, ajusta la ruta, por ejemplo:
+
+<script src="../carrito-global.js"></script>
+
+BOTÓN PARA ABRIR EL CARRITO
+---------------------------
+Puedes usar:
+
+<a href="carrito.html" class="btn primary-btn">
+    🛒 Carrito
+</a>
+
+o desde una subcarpeta:
+
+<a href="../carrito.html" class="btn primary-btn">
+    🛒 Carrito
+</a>
+
+IMPORTANTE
+----------
+localStorage funciona por navegador.
+Si agregas productos, cambias de página y luego abres carrito.html,
+seguirán guardados hasta que se eliminen o se limpie el almacenamiento
+del navegador.
