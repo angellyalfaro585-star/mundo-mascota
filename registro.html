@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario | Huellas & Estilo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">🐾 Huellas<span>&</span>Estilo</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="carrito.html">Volver al Carrito</a></li>
+        </ul>
+    </header>
+
+    <section class="story-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Crea tu Cuenta para Finalizar la Compra</h2>
+                <p>Es necesario estar registrado para procesar tu pedido</p>
+            </div>
+
+            <div style="max-width: 500px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <!-- El formulario envía al usuario a una página de confirmación utilizando el atributo action -->
+                <form action="confirmacion.html" method="GET">
+                    <div style="margin-bottom: 15px;">
+                        <label for="nombre">Nombre Completo:</label><br>
+                        <input type="text" id="nombre" name="nombre" required style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px;">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label for="correo">Correo Electrónico:</label><br>
+                        <input type="email" id="correo" name="correo" required style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px;">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label for="password">Contraseña:</label><br>
+                        <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px;">
+                    </div>
+
+                    <button type="submit" class="btn primary-btn" style="width: 100%; border: none; cursor: pointer;">Registrarse y Completar Compra</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
