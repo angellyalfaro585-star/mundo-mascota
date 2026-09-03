@@ -188,8 +188,8 @@ body {
     animation: float 4s ease-in-out infinite;
 }
 
-.fb1 { top: 25%; left: 10%; animation-delay: 0s; }
-.fb2 { top: 35%; right: 10%; animation-delay: 2s; background: var(--secondary); color: var(--white); }
+.fb1 { top: 15%; left: 5%; animation-delay: 0s; }
+.fb2 { top: 49%; right: 3%; animation-delay: 2s; background: var(--secondary); color: var(--white); }
 
 @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -846,4 +846,60 @@ body {
     color: #555555;
     margin: 0;
     font-size: 0.9rem;
+}
+/* ==========================================
+   MENÚ RESPONSIVO (Móviles)
+   ========================================== */
+
+/* 1. Ocultar el botón hamburguesa en computadoras */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--dark);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    color: var(--primary);
+}
+
+/* 2. Necesitamos que el navbar sea relativo para el menú desplegable */
+.navbar {
+    position: relative;
+}
+
+/* 3. Estilos exclusivos para pantallas móviles (celulares y tablets pequeñas) */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Mostrar el botón */
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%; /* Aparece justo debajo de la barra blanca */
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        padding: 1.5rem 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        gap: 1.5rem;
+        
+        /* Efecto de animación oculto por defecto */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 100;
+    }
+
+    /* Clase activa que agregaremos con JavaScript */
+    .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
 }

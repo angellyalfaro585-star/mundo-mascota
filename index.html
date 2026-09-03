@@ -14,6 +14,28 @@
 <body>
 
     <!-- HERO SECTION & NAVIGATION -->
+     <header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            HUELLAS&<span>ESTILO</span>
+        </a>
+        
+        <!-- Botón de menú para celulares -->
+        <button class="menu-toggle" id="menu-btn" aria-label="Abrir menú">
+            ☰
+        </button>
+
+        <!-- Lista de enlaces -->
+        <ul class="nav-links" id="nav-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#historia">Historia</a></li>
+            <li><a href="index.html#universo">Secciones</a></li>
+            <li><a href="index.html#ubicacion">Ubicación</a></li>
+            <li><a href="registro.html">Registrarse</a></li>
+            <li><a href="carrito.html">🛒 Carrito</a></li>
+        </ul>
+    </nav>
+</header>
     <header class="hero" id="inicio">
         <nav class="navbar">
             <div class="logo">🐾 Huellas<span>&</span>Estilo</div>
@@ -187,7 +209,6 @@ Lo que comenzó con el rescate de una mascota se convirtió en una gran inspirac
         </div>
     </section>
 <div class="map-container-styled">
-    <!-- Ubicacion-->
     <!-- Mapa interactivo de Google Maps -->
      <section class="ubicacion" id="ubicacion" ></section>
     <iframe 
@@ -237,6 +258,44 @@ Lo que comenzó con el rescate de una mascota se convirtió en una gran inspirac
             <p>&copy; 2026 Huellas & Estilo. Hecho con amor infinito para mascotas.</p>
         </div>
     </footer>
+<!-- Otros códigos de tu página arriba... -->
+    
+    <!-- Pega esto AQUÍ, justo antes de cerrar el body -->
+    <script>
+        // Nos aseguramos de que el código se ejecute cuando la página ya cargó
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // Usamos querySelector con las clases de tu CSS (es más seguro)
+            const menuBtn = document.querySelector(".menu-toggle");
+            const navMenu = document.querySelector(".nav-links");
+            const menuLinks = document.querySelectorAll(".nav-links li a"); // Selecciona los enlaces
 
+            // Si los elementos existen, activamos la función
+            if (menuBtn && navMenu) {
+                
+                // 1. Abrir y cerrar al tocar la hamburguesa
+                menuBtn.addEventListener("click", () => {
+                    navMenu.classList.toggle("active");
+                    
+                    // Cambia el icono dependiendo de si está activo o no
+                    if (navMenu.classList.contains("active")) {
+                        menuBtn.textContent = "✖";
+                    } else {
+                        menuBtn.textContent = "☰";
+                    }
+                });
+
+                // 2. Cerrar el menú automáticamente al tocar cualquier enlace (¡Muy útil en celulares!)
+                menuLinks.forEach(link => {
+                    link.addEventListener("click", () => {
+                        navMenu.classList.remove("active");
+                        menuBtn.textContent = "☰";
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>

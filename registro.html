@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario | Huellas & Estilo</title>
-    <link rel="icon" type="image/png" href="huellitas.jpg">
+    <link rel="icon" type="image/png" href="./huellitas.jpg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
         </ul>
     </header>
 
-    <section class="story-section">
+    <section class="story-section" style="padding-top: 4rem;">
         <div class="container">
             <div class="section-title">
                 <h2>Crea tu Cuenta para Finalizar la Compra</h2>
@@ -25,8 +25,8 @@
             </div>
 
             <div style="max-width: 500px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                <!-- El formulario envía al usuario a una página de confirmación utilizando el atributo action -->
-                <form action="confirmacion.html" method="GET">
+                <!-- Se eliminó action="confirmacion.html" y se agregó id="form-registro" -->
+                <form id="form-registro">
                     <div style="margin-bottom: 15px;">
                         <label for="nombre">Nombre Completo:</label><br>
                         <input type="text" id="nombre" name="nombre" required style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px;">
@@ -42,7 +42,9 @@
                         <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px;">
                     </div>
 
-                    <button type="submit" class="btn primary-btn" style="width: 100%; border: none; cursor: pointer;">Registrarse y Completar Compra</button>
+                    <button type="submit" class="btn primary-btn" style="width: 100%; border: none; cursor: pointer; padding: 1rem; border-radius: 50px; font-weight: bold;">
+                        Registrarse y Completar Compra
+                    </button>
                 </form>
             </div>
         </div>

@@ -31,7 +31,10 @@
                         <h3>Abrigo de Lana Italiana</h3>
                         <p>Diseño exclusivo para clima frío.</p>
                         <p><strong>Precio: $45.00</strong></p>
-                        <a href="../carrito.html" class="btn primary-btn">Agregar al Carrito</a>
+                        <!-- Se agregó la clase btn-agregar y los datos del producto -->
+                        <button class="btn primary-btn btn-agregar" data-nombre="Abrigo de Lana Italiana" data-precio="45.00" style="width: 100%; border: none; cursor: pointer; padding: 0.8rem; border-radius: 50px; font-weight: bold;">
+                            Agregar al Carrito
+                        </button>
                     </div>
                 </div>
 
@@ -41,12 +44,48 @@
                         <h3>Corbatín Elegante</h3>
                         <p>Ajustable y cómodo para ocasiones especiales.</p>
                         <p><strong>Precio: $15.00</strong></p>
-                        <a href="../carrito.html" class="btn primary-btn">Agregar al Carrito</a>
+                        <!-- Se agregó la clase btn-agregar y los datos del producto -->
+                        <button class="btn primary-btn btn-agregar" data-nombre="Corbatín Elegante" data-precio="15.00" style="width: 100%; border: none; cursor: pointer; padding: 0.8rem; border-radius: 50px; font-weight: bold;">
+                            Agregar al Carrito
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- LÓGICA PARA ENVIAR AL CARRITO -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const botonesAgregar = document.querySelectorAll(".btn-agregar");
+
+            botonesAgregar.forEach(boton => {
+                boton.addEventListener("click", (e) => {
+                    e.preventDefault(); 
+
+                    const nombreProducto = boton.getAttribute("data-nombre");
+                    const precioProducto = parseFloat(boton.getAttribute("data-precio"));
+
+                    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+                    const index = carrito.findIndex(prod => prod.nombre === nombreProducto);
+
+                    if (index !== -1) {
+                        carrito[index].cantidad += 1;
+                    } else {
+                        carrito.push({
+                            nombre: nombreProducto,
+                            precio: precioProducto,
+                            cantidad: 1
+                        });
+                    }
+
+                    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+                    // Redirige al carrito usando la ruta relativa correcta
+                    window.location.href = "../carrito.html";
+                });
+            });
+        });
+    </script>
 </body>
 </html>

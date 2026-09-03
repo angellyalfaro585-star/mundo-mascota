@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras | Huellas & Estilo</title>
-    <link rel="icon" type="image/png" href="huellitas.jpg">
-    <link rel="stylesheet" href="style.css">
-    <!-- Carrito -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras | Huellas & Estilo</title>
+    <link rel="icon" type="image/png" href="./huellitas.jpg">
     <link rel="stylesheet" href="style.css">
     <!-- Carga diferida del script -->
     <script src="carrito.js" defer></script>
@@ -24,36 +19,67 @@
         </ul>
     </header>
 
-    <section class="story-section">
+    <section class="story-section" style="padding-top: 4rem;">
         <div class="container">
             <div class="section-title">
                 <h2>Tu Carrito de Compras</h2>
                 <p>Resumen de productos seleccionados</p>
             </div>
 
-            <div style="background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                    <thead>
-                        <tr style="border-bottom: 2px solid #ddd;">
-                            <th style="padding: 10px;">Producto</th>
-                            <th style="padding: 10px;">Cantidad</th>
-                            <th style="padding: 10px;">Precio</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cart-body">
-                        <!-- Los productos guardados se cargan aquí con JavaScript -->
-                     </tbody>
-                </table>
-
-                <h3 style="margin-top: 20px; text-align: right;">Total: $<span id="cart-total">0.00</span></h3>
-
-                <div style="margin-top: 20px; text-align: right;">
-                    <!-- El botón lleva al registro para simular la verificación obligatoria -->
-                    <a href="registro.html" class="btn primary-btn">Realizar Compra</a>
+            <!-- Contenedor principal flex para poner tabla y resumen lado a lado -->
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; align-items: flex-start;">
+                
+                <!-- TABLA DE PRODUCTOS (60% del ancho) -->
+                <div style="flex: 1 1 60%; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid #ddd;">
+                                <th style="padding: 10px;">Producto</th>
+                                <th style="padding: 10px;">Precio</th>
+                                <th style="padding: 10px; text-align: center;">Cantidad</th>
+                                <th style="padding: 10px; text-align: center;">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-body">
+                            <!-- Si está vacío, JS mostrará un mensaje aquí -->
+                        </tbody>
+                    </table>
                 </div>
+
+                <!-- RESUMEN DE LA COMPRA (35% del ancho) -->
+                <div class="card cart-summary" style="flex: 1 1 30%; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: left;">
+                    <h3 style="font-family: var(--font-heading); color: var(--dark); margin-bottom: 1.5rem;">RESUMEN DEL PEDIDO</h3>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: #636e72;">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">$0.00</span>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: #636e72;">
+                        <span>Envío</span>
+                        <span id="cart-envio">$0.00</span>
+                    </div>
+                    
+                    <hr style="border: none; border-top: 2px dashed #dfe6e9; margin: 1rem 0;">
+                    
+                    <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; color: var(--dark); margin-bottom: 1.5rem;">
+                        <span>Total</span>
+                        <span id="cart-total" style="color: var(--primary);">$0.00</span>
+                    </div>
+
+                    <!-- BOTÓN VACIAR CARRITO -->
+                    <button id="btn-vaciar" style="width: 100%; background: transparent; border: 2px solid #ff7675; color: #ff7675; padding: 0.8rem; border-radius: 50px; font-weight: 700; cursor: pointer; margin-bottom: 1rem; transition: all 0.3s ease;">
+                        Vaciar Carrito 🗑️
+                    </button>
+
+                    <!-- BOTÓN DE PAGO -->
+                    <button id="btn-pagar" class="btn primary-btn" style="width: 100%; border: none; cursor: pointer; padding: 0.8rem; border-radius: 50px; font-weight: bold; background: var(--primary); color: #fff;">
+                        Proceder al Pago
+                    </button>
+                </div>
+
             </div>
         </div>
     </section>
-
 </body>
 </html>
