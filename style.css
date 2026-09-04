@@ -870,36 +870,36 @@ body {
 .navbar {
     position: relative;
 }
+/* Ocultamos el botón en computadoras */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none; /* Evita que el texto se seleccione al hacer clic rápido */
+}
 
-/* 3. Estilos exclusivos para pantallas móviles (celulares y tablets pequeñas) */
-@media (max-width: 768px) {
+/* Solo para celulares y tablets */
+@media screen and (max-width: 768px) {
     .menu-toggle {
-        display: block; /* Mostrar el botón */
+        display: block;
     }
 
     .nav-links {
-        position: absolute;
-        top: 100%; /* Aparece justo debajo de la barra blanca */
-        left: 0;
-        width: 100%;
-        background-color: var(--white);
+        display: none; /* Oculto por defecto */
         flex-direction: column;
-        padding: 1.5rem 0;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-        gap: 1.5rem;
-        
-        /* Efecto de animación oculto por defecto */
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
-        z-index: 100;
+        width: 100%;
+        background-color: #fff;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        padding: 1rem 0;
+        z-index: 999;
     }
 
-    /* Clase activa que agregaremos con JavaScript */
+    /* ESTO ES CLAVE: Cuando el JS agrega la clase 'active', el menú se muestra */
     .nav-links.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+        display: flex;
     }
 }
