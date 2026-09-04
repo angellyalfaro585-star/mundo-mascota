@@ -12,14 +12,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función principal para dibujar la tabla
     function renderizarCarrito() {
+        if (!cartBody) return;
         cartBody.innerHTML = "";
         let subtotal = 0;
 
         if (carrito.length === 0) {
             cartBody.innerHTML = `<tr><td colspan="4" style="text-align: center; padding: 30px; color: #636e72;">Tu carrito está vacío. ¡Agrega algunos productos!</td></tr>`;
-            subtotalElement.textContent = "$0.00";
-            envioElement.textContent = "$0.00";
-            totalElement.textContent = "$0.00";
+            if (subtotalElement) subtotalElement.textContent = "$0.00";
+            if (envioElement) envioElement.textContent = "$0.00";
+            if (totalElement) totalElement.textContent = "$0.00";
             return;
         }
 
@@ -29,10 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const tr = document.createElement("tr");
             tr.style.borderBottom = "1px solid #f1f2f6";
             
-            // Creamos la fila manteniendo tus estilos
             tr.innerHTML = `
                 <td style="padding: 15px 10px;"><strong>${producto.nombre}</strong></td>
-                <td style="padding: 15px 10px; color: var(--primary); font-weight: bold;">$${producto.precio.toFixed(2)}</td>
+                <td style="padding: 15px 10px; color: var(--primary, #333); font-weight: bold;">$${producto.precio.toFixed(2)}</td>
                 <td style="padding: 15px 10px; text-align: center;">
                     <div style="display: inline-flex; align-items: center; gap: 8px; background: #f1f2f6; padding: 4px 10px; border-radius: 20px;">
                         <button class="btn-restar" data-index="${index}" style="border: none; background: transparent; cursor: pointer; font-weight: bold; font-size: 1.1rem;">-</button>
@@ -48,31 +48,33 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Actualizar totales
-        subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-        envioElement.textContent = `$${COSTO_ENVIO.toFixed(2)}`;
-        totalElement.textContent = `$${(subtotal + COSTO_ENVIO).toFixed(2)}`;
+        if (subtotalElement) subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+        if (envioElement) envioElement.textContent = `$${COSTO_ENVIO.toFixed(2)}`;
+        if (totalElement) totalElement.textContent = `$${(subtotal + COSTO_ENVIO).toFixed(2)}`;
     }
 
     // Escuchar clics en los botones de sumar, restar o eliminar
     if (cartBody) {
         cartBody.addEventListener("click", (e) => {
-            const index = e.target.getAttribute("data-index");
-            
-            if (e.target.classList.contains("btn-sumar")) {
+            const boton = e.target.closest("button");
+            if (!boton) return;
+
+            const index = boton.getAttribute("data-index");
+            if (index === null) return;
+
+            if (boton.classList.contains("btn-sumar")) {
                 carrito[index].cantidad++;
-            } else if (e.target.classList.contains("btn-restar")) {
+            } else if (boton.classList.contains("btn-restar")) {
                 if (carrito[index].cantidad > 1) {
                     carrito[index].cantidad--;
                 }
-            } else if (e.target.classList.contains("btn-eliminar")) {
+            } else if (boton.classList.contains("btn-eliminar")) {
                 carrito.splice(index, 1);
             }
             
             // Guardar cambios en memoria y volver a dibujar
-            if (index !== null) {
-                localStorage.setItem("carrito", JSON.stringify(carrito));
-                renderizarCarrito();
-            }
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            renderizarCarrito();
         });
     }
 
@@ -101,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     window.location.href = "registro.html";
                 }
             } else {
-                const totalActual = totalElement.textContent;
+                const totalActual = totalElement ? totalElement.textContent : "";
                 if (confirm(`¿Aceptas realizar la compra por un total de ${totalActual}?`)) {
                     alert("¡Compra realizada con éxito! Tu pedido está en camino 🐶📦");
                     carrito = []; // Vaciamos tras la compra

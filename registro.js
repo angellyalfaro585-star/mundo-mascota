@@ -3,23 +3,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (formRegistro) {
         formRegistro.addEventListener("submit", (e) => {
-            e.preventDefault(); // Evita que la página se recargue o intente ir a otra página
+            e.preventDefault();
 
-            // Obtenemos los valores ingresados en los campos
+            // 1. Obtener los productos del carrito
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+            // 2. Verificar que el carrito no esté vacío
+            if (carrito.length === 0) {
+                alert("Tu carrito está vacío. Agrega productos antes de realizar una compra.");
+                window.location.href = "index.html";
+                return;
+            }
+
+            // 3. Guardar la información del registro de usuario
             const nombre = document.getElementById("nombre").value;
-            const correo = document.getElementById("correo").value;
-            
-            // Esta es la clave mágica que el código de tu carrito estaba esperando
             localStorage.setItem("usuarioRegistrado", "true");
-            
-            // Guardamos el nombre del usuario para personalizar la experiencia si lo deseas
             localStorage.setItem("nombreUsuario", nombre);
 
-            // Mostramos un mensaje de éxito
-            alert(`¡Bienvenido/a a Huellas & Estilo, ${nombre}! Tu registro fue exitoso.`);
+            // 4. Vaciar el carrito borrándolo del localStorage
+            localStorage.removeItem("carrito");
 
-            // Redirigimos de vuelta al carrito para que pueda hacer clic en Pagar
-            window.location.href = "carrito.html";
+            // 5. Mostrar ventana emergente con la confirmación del éxito de la compra
+            alert(`¡Compra realizada con éxito, ${nombre}! 🐾📦\n\nTu pedido ha sido procesado y tu carrito ahora está vacío. ¡Gracias por confiar en Huellas & Estilo!`);
+
+            // 6. Redirigir a la página principal
+            window.location.href = "index.html";
         });
     }
 });
